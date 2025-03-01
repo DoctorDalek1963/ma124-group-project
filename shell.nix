@@ -5,10 +5,11 @@
       matplotlib
       pandas
       scikitlearn
+      jupyter
     ]);
 in
   pkgs.mkShell {
-    buildInputs = [python];
+    buildInputs = [python pkgs.just];
 
     shellHook = ''
       export PYTHONPATH="${python}/${python.sitePackages}"
