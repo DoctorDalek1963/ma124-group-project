@@ -7,9 +7,22 @@
       scikitlearn
       jupyter
     ]);
+
+  texlive = pkgs.texlive.withPackages (p:
+    with p; [
+      scheme-medium
+      adjustbox
+      amsmath
+      environ
+      enumitem
+      pdfcol
+      tcolorbox
+      titling
+      upquote
+    ]);
 in
   pkgs.mkShell {
-    buildInputs = [python pkgs.just];
+    buildInputs = [python texlive] ++ (with pkgs; [just pandoc]);
 
     shellHook = ''
       export PYTHONPATH="${python}/${python.sitePackages}"
