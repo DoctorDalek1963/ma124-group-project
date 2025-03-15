@@ -3,12 +3,16 @@ alias j := jupyter
 _default:
 	@just --list
 
-# run JupyterLab
+# run a JupyterLab server
 jupyter:
 	python -m jupyter lab
 
+# run the notebook from scratch
+run:
+	python -m jupyter execute Machine_Learning_Project.ipynb --inplace
+
 # convert the notebook to a PDF
-pdf:
+pdf: run
 	python -m jupyter nbconvert Machine_Learning_Project.ipynb --to pdf
 
 # clean PDF-related build artifacts
